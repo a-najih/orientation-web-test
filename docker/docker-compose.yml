@@ -1,0 +1,42 @@
+version: '3.2'
+
+services:
+    db:
+        container_name: "db"
+        image: postgres:12
+        restart: always
+        environment:
+            POSTGRES_USER: main
+            POSTGRES_PASSWORD: main
+            POSTGRES_DB: prj_healthcheck
+        ports:
+            - 15432:5432
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+    php:
+        container_name: "php-fpm"
+        build:
+            context: ./php
+        environment:
+            APP_ENV: dev
+            APP_SECRET: 24e17c47430bd2044a61c131c1cf6990
+            DATABASE_URL: "postgres://main:main@db:5432/prj_healthcheck"
+        volumes:
+            - ./../mon-test:/var/www
+            - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./logs/php:/var/log
+    nginx:
+        container_name: "nginx"
+        build:
+            context: ./nginx
+        volumes:
+            - ./../mon-test:/var/www
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./logs:/var/log
+        depends_on:
+            - php
+        ports:
+            - "80:80"
