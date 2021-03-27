@@ -51,3 +51,18 @@
 - Le choix de Postgres était basé sur le fait qu'il a une meilleur indexation que Mysql.
 - J'ai pris le temps de mettre en place un environement front basé sur du Yarn, Webpack encore, Sass builder et PostCss pour une meilleur intégration pour bootstrap avec symfony.
 - Pour le module d'authentification, j'ai preféré d'utiliser le composant Security de Symfony, car il réponds bien au besoin.
+
+#### c- Mini guide d’installation :
+- Cloner le repo git vers un répertoire de travail
+- Installer Docker et un DockerCompose
+- Au niveau du répertoire « docker », monter l’environnement docker :
+`docker-compose up –d –build`
+- Dans le navigateur, tapez 'localost'
+
+
+
+#### d- Le reste à faire :
+- Le tarvail sur le fontend de la page des factures (faute de temps :( )
+
+
+
