@@ -8,7 +8,7 @@ services:
         environment:
             POSTGRES_USER: main
             POSTGRES_PASSWORD: main
-            POSTGRES_DB: prj_healthcheck
+            POSTGRES_DB: prj_test
         ports:
             - 15432:5432
     adminer:
@@ -23,7 +23,7 @@ services:
         environment:
             APP_ENV: dev
             APP_SECRET: 24e17c47430bd2044a61c131c1cf6990
-            DATABASE_URL: "postgres://main:main@db:5432/prj_healthcheck"
+            DATABASE_URL: "postgres://main:main@db:5432/prj_test"
         volumes:
             - ./../mon-test:/var/www
             - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
