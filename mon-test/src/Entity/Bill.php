@@ -111,29 +111,18 @@ class Bill
     public function setPriceHt(float $priceHt): self
     {
         $this->priceHt = $priceHt;
-        $this->setPriceTtc();
 
         return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPriceTtc(): float
-    {
-        return $this->priceTtc;
     }
 
     /**
      * The Price TTC is calculated automatically from Price HT.
      * The formula is  : Price TTC = Price HT + 20% Price HT (TVA = 20%)
      *
-     * @return $this
+     * @return float
      */
-    public function setPriceTtc(): self
+    public function getPriceTtc(): float
     {
-        $this->priceTtc = $this->priceHt + self::TVA * $this->priceHt;
-
-        return $this;
+        return $this->priceHt + self::TVA * $this->priceHt;
     }
 }

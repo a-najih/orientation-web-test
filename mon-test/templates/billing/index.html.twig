@@ -32,6 +32,7 @@
                 </button>
             </div>
         </div>
+
     </header>
 
     <main>
@@ -43,6 +44,33 @@
                 </div>
             </div>
         </section>
+
+        {% if bills is not empty %}
+            <div class="container">
+                <div class="row">
+                    <div class="col themed-grid-col">N°</div>
+                    <div class="col themed-grid-col">Designation</div>
+                    <div class="col themed-grid-col">Prix HT</div>
+                    <div class="col themed-grid-col">TVA</div>
+                    <div class="col themed-grid-col">Prix TTC</div>
+                    <div class="col themed-grid-col">Action</div>
+                </div>
+                {% for bill in bills %}
+                    <div class="row">
+                        <div class="col themed-grid-col">{{ bill.id }}</div>
+                        <div class="col themed-grid-col">{{ bill.designation }}</div>
+                        <div class="col themed-grid-col">{{ bill.priceHt }}</div>
+                        <div class="col themed-grid-col">{{ tva }}</div>
+                        <div class="col themed-grid-col">{{ bill.priceTtc }}</div>
+                        <div class="col themed-grid-col"></div>
+                    </div>
+                {% endfor %}
+                <p></p>
+                {% include 'billing/pagination.html.twig' %}
+            </div>
+        {% else %}
+            <p>Il n'y a aucune facture pour l'instant.</p>
+        {% endif %}
 
     </main>
 
